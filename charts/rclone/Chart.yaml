@@ -9,8 +9,8 @@ annotations:
 name: rclone
 description: A Helm chart for backup persistent in gdrive
 type: application
-version: 0.1.4
-appVersion: 1.52.3
+version: 0.1.5
+appVersion: 1.57.0
 maintainers:
 - email: ymrs@yandex.ru
   name: ymrsmns
