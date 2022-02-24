@@ -6,17 +6,17 @@ kind: CronJob
 replicaCount: 1
 
 image:
-  repository: quay.io/simplyzee/kube-rclone
+  repository: rclone/rclone
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.52.3"
+  tag: "v1.57.0"
 
 init:
   image:
     repository: busybox
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.33.1"
+    tag: "1.34.1"
   # Create arhive and copy backup files  
   runScript:
     sync.sh: |-
@@ -112,19 +112,19 @@ resources:
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-   limits:
-     cpu: 100m
-     memory: 128Mi
+   #limits:
+   #  cpu: 100m
+   #  memory: 128Mi
    requests:
-     cpu: 100m
-     memory: 128Mi
+     cpu: 2
+     memory: 2046Mi
 
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 

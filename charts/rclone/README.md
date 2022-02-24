@@ -2,6 +2,8 @@
 
 A Helm chart for backup persistent in gdrive
 
+This fork updates busybox and rclone to latest stables as of 02/24/22, along with enabling autoscaling and increasing base resource requests and removing resource limits.
+
 ![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.52.3](https://img.shields.io/badge/AppVersion-1.52.3-informational?style=flat-square)
 
 [Rclone](https://github.com/jetstack/version-checker) is a command line program to manage files on cloud storage. It is a feature rich alternative to cloud vendors' web storage interfaces. Over 40 cloud storage products support rclone including S3 object stores, business & consumer file storage services, as well as standard transfer protocols.
@@ -36,19 +38,19 @@ helm delete my-release
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| autoscaling.enabled | bool | `false` |  |
-| autoscaling.maxReplicas | int | `100` |  |
+| autoscaling.enabled | bool | `true` |  |
+| autoscaling.maxReplicas | int | `10` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | cfgRclone."rclone.cfg" | string | `"# your rclone config is managed here.   \n[test-gdrive]\ntype = drive\nclient_id = 123456.apps.googleusercontent.com\nclient_secret = 123456\nscope = drive\ntoken = {}\nteam_drive = 123456"` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"quay.io/simplyzee/kube-rclone"` |  |
-| image.tag | string | `"v1.52.3"` |  |
+| image.repository | string | `"rclone/rclone"` |  |
+| image.tag | string | `"v1.57.0"` |  |
 | imagePullSecrets | list | `[]` |  |
 | init.image.pullPolicy | string | `"IfNotPresent"` |  |
 | init.image.repository | string | `"busybox"` |  |
-| init.image.tag | string | `"1.33.1"` |  |
+| init.image.tag | string | `"1.34.1"` |  |
 | init.persistence[0].emptyDir | bool | `true` |  |
 | init.persistence[0].init | bool | `true` |  |
 | init.persistence[0].initPath | string | `"/source"` |  |
